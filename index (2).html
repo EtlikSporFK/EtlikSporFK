@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EtlikSpor FK | Resmî Site</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e6f0ff, #f9fbfd);
+    color: #1a2935;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    background: rgba(255 255 255 / 0.25);
+    border-bottom: 1px solid rgba(255 255 255 / 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 18px 20px;
+    z-index: 100;
+    box-shadow:
+      0 0 15px rgba(41, 128, 185, 0.15);
+    user-select: none;
+    transition: background-color 0.4s ease;
+  }
+  nav:hover {
+    background: rgba(255 255 255 / 0.4);
+  }
+
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: #1e3a8a;
+    user-select: text;
+    flex-shrink: 0;
+    letter-spacing: 0.06em;
+  }
+
+  nav a {
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 14px;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    user-select: none;
+    perspective: 600px;
+    will-change: transform;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 60%;
+    height: 3px;
+    background-color: #3b82f6;
+    border-radius: 12px;
+    transition: transform 0.35s ease;
+  }
+
+  nav a:hover::after,
+  nav a.active::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  nav a:hover {
+    color: #2563eb;
+    background-color: rgba(59, 130, 246, 0.15);
+    transform: rotateX(6deg) translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  nav a.active {
+    color: #1e40af;
+    font-weight: 700;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    flex-grow: 1;
+    padding: 50px 60px;
+    max-width: 900px;
+    margin: 0 auto 60px;
+    user-select: text;
+  }
+
+  h1, h2 {
+    color: #1e3a8a;
+    margin-bottom: 22px;
+    font-weight: 700;
+  }
+  h1 {
+    font-size: 2.9rem;
+    letter-spacing: 0.05em;
+  }
+  h2 {
+    font-size: 2.1rem;
+    border-bottom: 3px solid #3b82f6;
+    padding-bottom: 7px;
+    margin-top: 55px;
+  }
+
+  p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    color: #34495e;
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 45px;
+  }
+
+  ul li {
+    background: rgba(255 255 255 / 0.5);
+    margin-bottom: 14px;
+    padding: 16px 22px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #1e3a8a;
+    box-shadow:
+      0 4px 10px rgba(59, 130, 246, 0.12),
+      inset 0 1px 0 rgba(255 255 255 / 0.7);
+    transition:
+      background-color 0.3s ease,
+      transform 0.22s ease;
+    cursor: default;
+  }
+  ul li:hover {
+    background-color: rgba(59, 130, 246, 0.15);
+    transform: translateX(8px);
+    box-shadow:
+      0 8px 15px rgba(59, 130, 246, 0.25),
+      inset 0 1px 0 rgba(255 255 255 / 0.85);
+  }
+
+  ul li.dusman {
+    background: rgba(255 0 0 / 0.12);
+    color: #b03030;
+    box-shadow:
+      0 4px 8px rgba(176, 48, 48, 0.15),
+      inset 0 1px 0 rgba(255 255 255 / 0.75);
+  }
+  ul li.dusman:hover {
+    background: rgba(255 0 0 / 0.2);
+    transform: translateX(8px);
+    box-shadow:
+      0 8px 18px rgba(176, 48, 48, 0.3),
+      inset 0 1px 0 rgba(255 255 255 / 0.85);
+  }
+
+  ul li.dost {
+    background: rgba(59 130 246 / 0.1);
+    color: #1e40af;
+    box-shadow:
+      0 4px 8px rgba(59, 130, 246, 0.15),
+      inset 0 1px 0 rgba(255 255 255 / 0.75);
+  }
+  ul li.dost:hover {
+    background: rgba(59 130 246 / 0.2);
+    transform: translateX(8px);
+    box-shadow:
+      0 8px 18px rgba(59, 130, 246, 0.3),
+      inset 0 1px 0 rgba(255 255 255 / 0.85);
+  }
+
+  .hashtag {
+    font-weight: 700;
+    font-size: 1.45rem;
+    color: #3b82f6;
+  }
+
+  a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #1d4ed8;
+  }
+
+  /* Geri Bildirim Formu */
+  form {
+    background: rgba(255 255 255 / 0.35);
+    backdrop-filter: blur(20px);
+    padding: 25px 30px;
+    border-radius: 25px;
+    box-shadow:
+      0 8px 25px rgba(59, 130, 246, 0.15);
+    max-width: 600px;
+    margin: 0 auto 60px;
+    transition: box-shadow 0.3s ease;
+  }
+  form:hover {
+    box-shadow:
+      0 12px 35px rgba(59, 130, 246, 0.3);
+  }
+
+  form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1e3a8a;
+  }
+
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 22px;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(255 255 255 / 0.75);
+    color: #1a2935;
+    box-shadow:
+      inset 0 1px 4px rgba(0,0,0,0.08);
+    transition:
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+    resize: vertical;
+  }
+  form input[type="text"]:focus,
+  form input[type="email"]:focus,
+  form textarea:focus {
+    outline: none;
+    background: #fff;
+    box-shadow:
+      0 0 8px 2px #3b82f6;
+  }
+
+  form textarea {
+    min-height: 100px;
+  }
+
+  form button {
+    cursor: pointer;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 24px;
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    user-select: none;
+    perspective: 600px;
+  }
+  form button:hover {
+    background-color: #2563eb;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+  }
+  form button:active {
+    transform: translateY(0) scale(1);
+    box-shadow: none;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #7f8c8d;
+    user-select: none;
+  }
+
+  /* Scroll bar */
+  main::-webkit-scrollbar {
+    width: 8px;
+  }
+  main::-webkit-scrollbar-track {
+    background: #dbe9ff;
+  }
+  main::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 6px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    nav .logo {
+      flex-basis: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+    main {
+      padding: 25px 15px;
+      max-width: 100%;
+    }
+    form {
+      max-width: 100%;
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+    }
+    nav a {
+      font-size: 1rem;
+      padding: 9px 15px;
+      border-radius: 12px;
+    }
+    form button {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Site Menü">
+  <div class="logo" tabindex="0">EtlikSpor FK</div>
+  <a href="#hakkinda" class="active" tabindex="0">Hakkında</a>
+  <a href="#dusmanlar" tabindex="0">Düşman Kulüpler</a>
+  <a href="#dostlar" tabindex="0">Dost Kulüpler</a>
+  <a href="#geri" tabindex="0">Geri Bildirim</a>
+  <a href="#iletisim" tabindex="0">İletişim</a>
+</nav>
+
+<main role="main" tabindex="0">
+  <section id="hakkinda" tabindex="0" aria-label="Etlikspor hakkında">
+    <h1>Etlikspor Futbol Kulübü</h1>
+    <p>Etlikspor Futbol Kulübü’nün resmî kanalına hoşgeldiniz! Bu kulübümüz sokağımızın en iyi futbol kulübüdür. Her zaman heryerde <span class="hashtag">#forzaetlik</span></p>
+  </section>
+
+  <section id="dusmanlar" tabindex="0" aria-label="Düşman Kulüpler">
+    <h2>🤮 Düşman Kulüpler</h2>
+    <ul>
+      <li class="dusman">Lion United 🔴🟡</li>
+      <li class="dusman">Kurtgiller SK ⚫️⚪️</li>
+      <li class="dusman">Ebuspor 🟣⚫️</li>
+    </ul>
+    <p style="font-style: italic; color:#b03030;">
+      <strong>Not:</strong> Lion United kötü oynayan ve hiçbir zaman EtliksporFK seviyesinde olamayacaktır. Etlikspor ve #forzaetlik taraftar grubumuza laf atarak sokağın en iyisi olamazsınız!
+    </p>
+  </section>
+
+  <section id="dostlar" tabindex="0" aria-label="Dost Kulüpler">
+    <h2>👑 Dost Kulüpler</h2>
+    <ul>
+      <li class="dost">Ankara Gençlikspor ⚫️🟡</li>
+      <li class="dost">Ankara Goats 🔵⚪️</li>
+      <li class="dost">Kınıklar SK 🔴⚫️</li>
+    </ul>
+  </section>
+
+  <section id="geri" tabindex="0" aria-label="Geri Bildirim Formu">
+    <h2>📢 Geri Bildirim</h2>
+    <form id="feedbackForm" novalidate>
+      <label for="name">Adınız</label>
+      <input type="text" id="name" name="name" placeholder="Adınızı girin" required minlength="2" aria-required="true" />
+      
+      <label for="email">E-posta</label>
+      <input type="email" id="email" name="email" placeholder="E-posta adresiniz" required aria-required="true" />
+      
+      <label for="message">Mesajınız</label>
+      <textarea id="message" name="message" placeholder="Mesajınızı yazın..." required minlength="5" aria-required="true"></textarea>
+      
+      <button type="submit" aria-label="Geri bildirim gönder">Gönder</button>
+    </form>
+  </section>
+
+  <section id="iletisim" tabindex="0" aria-label="İletişim bilgileri">
+    <h2>📬 İletişim</h2>
+    <p>Youtube Kanalı: <a href="https://www.youtube.com/@EtliksporFK" target="_blank" rel="noopener noreferrer" aria-label="Etlikspor YouTube Kanalı">@EtliksporFK</a></p>
+    <p>Katılım Tarihi: 31 Ağustos 2023</p>
+    <p>Abone: 20</p>
+    <p>Görüntülenme: 1.299</p>
+  </section>
+
+  <footer>
+    © 2025 EtlikSpor FK | Sokağın En İyisi #forzaetlik
+  </footer>
+</main>
+
+<script>
+  // Menü linklerine tıklanınca smooth scroll ve active class değişimi
+  const navLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('main section');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      const id = link.getAttribute('href').substring(1);
+      document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    let scrollPos = window.scrollY + window.innerHeight / 3;
+    sections.forEach(section => {
+      if(scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight){
+        navLinks.forEach(l => l.classList.remove('active'));
+        let id = section.getAttribute('id');
+        document.querySelector(`nav a[href="#${id}"]`).classList.add('active');
+      }
+    });
+  });
+
+  // Basit form doğrulama ve uyarı
+  const form = document.getElementById('feedbackForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if(name.length < 2){
+      alert('Lütfen geçerli bir isim girin.');
+      form.name.focus();
+      return;
+    }
+    if(!validateEmail(email)){
+      alert('Lütfen geçerli bir e-posta adresi girin.');
+      form.email.focus();
+      return;
+    }
+    if(message.length < 5){
+      alert('Lütfen en az 5 karakterlik mesaj girin.');
+      form.message.focus();
+      return;
+    }
+
+    alert('Geri bildiriminiz için teşekkürler, gardaş!');
+    form.reset();
+  });
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+</script>
+
+</body>
+</html>
